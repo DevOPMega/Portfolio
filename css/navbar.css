@@ -1,0 +1,145 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:  sans-serif;
+  letter-spacing: 1.5px;
+}
+
+:root {
+  --nav-bg:  #0f1324;
+  --main-clr: #EB455F;
+  --main-bg: #141a33;
+  --font-clr: #fefffb;
+}
+body{
+    background: var(--main-bg);
+}
+nav{
+    display: flex;
+    background-color: var(--nav-bg);
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 100%;
+    z-index: 1;
+}
+.logo{
+    color: #fff;
+    font-size: 22px;
+    font-weight: 700;
+    justify-self: start;
+    text-decoration: none;
+}
+nav ul{
+    --padding: 20px;
+    --font-size: 15px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size);
+    overflow-y: hidden;
+    transition: 1s cubic-bezier(.68,-0.55,.27,10.55);
+}
+nav ul li {
+    padding: var(--padding);
+}
+nav ul li a{
+    color: var(--font-clr);
+    text-decoration: none;
+    position: relative;
+}
+nav ul li a::after{
+    content: "";
+    width: 0%;
+    height: 2px;
+    background: var(--main-clr);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: 0.3s ease;
+}
+nav ul li a:hover::after{
+    width: 100%;
+}
+nav .menu {
+  width: 22px;
+  height: 16px;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  margin: 20px;
+}
+nav .menu span {
+  width: 100%;
+  height: 2px;
+  border-radius: 99px;
+  background: #fff;
+  transition: 0.3s ease;
+  transform-origin: left;
+}
+nav .menu.active span {
+  background: var(--main-clr);
+}
+
+nav .menu.active span:nth-child(1){
+    transform: rotate(40deg);
+}
+nav .menu.active span:nth-child(2){
+    transform: scale(0);
+}
+nav .menu.active span:nth-child(3){
+    transform: rotate(-40deg);
+}
+
+@media (max-width: 900px){
+    nav{
+        justify-content: space-between;
+    }
+    .logo{
+        margin-left: 10vw;
+    }
+    nav .menu{
+        display: flex;
+        margin-right: 10vw;
+    }
+    
+    nav ul {
+        --height: 0px;
+        
+        background: var(--nav-bg);
+        position: absolute;
+        flex-direction: column;
+        width: 100%;
+        top: 56px;
+        left: 0;
+        height: var(--height);
+        transition: 1s  cubic-bezier(.68,-0.55,.27,1.55);
+    }
+    nav ul.active{
+        --height: calc(
+            ((var(--padding)*2)+(var(--font-size)*1.5))*4
+            );
+          
+        transition: 1s ease;
+    }
+    nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+     nav ul li a {
+        width: 100%;
+        text-transform: capitalize;
+     }
+}
+
+.span-color{
+    color: var(--main-clr);
+}
